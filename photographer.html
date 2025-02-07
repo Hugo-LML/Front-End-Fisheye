@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -8,30 +8,84 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
+    <div id="photographer_wrapper" aria-hidden="false">
+      <header>
+        <a href="/index.html" title="Fisheye Home page" aria-label="Fisheye Home page">
+          <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+        </a>
+      </header>
+      <main id="photographer_main">
+        <div class="photographer_header">
+          <div class="photographer_infos">
+            <h1 class="photographer_name"></h1>
+            <p class="photographer_location"></p>
+            <p class="photographer_tagline"></p>
+          </div>
+          <button class="contact_button" aria-label="Contact me">Contactez-moi</button>
+          <img class="photographer_portrait" />
+        </div>
+        <div class="sort">
+          <label for="sort">Trier par</label>
+          <select id="sort">
+            <option value="popular">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
+        <section class="photo_section"></section>
+        <aside>
+          <div>
+            <p></p>
+            <img src="assets/icons/heart-black.svg" alt="likes" />
+          </div>
+          <p class="daily-price"></p>
+        </aside>
+      </main>
+    </div>
+    <div id="contact_modal" aria-hidden="true">
+			<div class="modal" role="dialog" aria-labelledby="modal_title">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal_title">Contactez-moi</h2>
+          <button type="button" id="modal_close_btn" onclick="toggleModal('close')" aria-label="Close contact form">
+            <img src="assets/icons/close.svg" alt="close" />
+          </button>
         </header>
-				<form>
+				<form name="contact">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstName">Prénom</label>
+						<input type="text" id="firstName" name="firstName" required>
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <label for="email">Email</label>
+            <input type="email" name="email" required>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" required></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button type="submit" class="contact_button" aria-label="Send">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox_modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-label="image closeup view">
+        <div class="lightbox_content">
+          <button type="button" aria-label="Close dialog">
+            <img src="assets/icons/close-red.svg" alt="close" />
+          </button>
+          <button type="button" class="prev" aria-label="previous image">
+            <img src="assets/icons/arrow-left.svg" alt="previous image" />
+          </button>
+          <div class="lightbox_image">
+            <div class="lightbox_image_container"></div>
+            <p></p>
+          </div>
+          <button type="button" class="next" aria-label="next image">
+            <img src="assets/icons/arrow-right.svg" alt="next image" />
+          </button>
+        </div>
+      </div>
+    </div>
     <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/templates/photo.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
